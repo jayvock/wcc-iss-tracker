@@ -18,9 +18,11 @@ function draw() {
   background(220);
   image(img, 0, 0);
   httpGet('http://api.open-notify.org/iss-now.json', 'json', false, function(response) {
+    if(response.message === 'success') {
     jsonData = response;
     lat = jsonData.iss_position.latitude;
     long = jsonData.iss_position.longitude;
+    }
   });
 
   normalizedLat = map(lat, -90, 90, height, 0);
